@@ -17,5 +17,6 @@ RUN echo "Installing base packages" \
 
 CMD socat tcp-listen:$LOCAL_PORT,reuseaddr,fork tcp:$REMOTE_HOST:$REMOTE_PORT & \
     pid=$! && trap "kill $pid" SIGINT && \
-	socat udp-listen:$LOCAL_PORT,pktinfo,fork UDP:$REMOTE_HOST:$REMOTE_PORT & \
-	wait $pid
+    socat udp-listen:$LOCAL_PORT,pktinfo,fork UDP:$REMOTE_HOST:$REMOTE_PORT & \
+    wait $pid
+	
