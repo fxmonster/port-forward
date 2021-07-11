@@ -15,5 +15,6 @@ RUN echo "Installing base packages" \
 	&& echo "Removing apk cache" \
 	&& rm -rf /var/cache/apk/
 
-CMD socat tcp-listen:$LOCAL_PORT,reuseaddr,fork tcp:$REMOTE_HOST:$REMOTE_HOSTTE_PORT & pid=$! && trap "kill $pid" SIGINT && \
-	echo "Socat started listening on $LOCAL_PORT: Redirecting traffic to $REMOTE_HOST:$REMOTE_PORT ($pid)" && wait $pid
+CMD socat tcp-listen:$LOCAL_PORT,reuseaddr,fork tcp:$REMOTE_HOST:$REMOTE_PORT & pid=$! && trap "kill $pid" SIGINT && \
+	echo "Socat started listening on $LOCAL_PORT: Redirecting traffic to $REMOTE_HOST:$REMOTE_PORT ($pid)" && \
+	wait $pid
